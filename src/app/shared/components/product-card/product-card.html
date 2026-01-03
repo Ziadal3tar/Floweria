@@ -1,0 +1,32 @@
+<div
+  class="product-card premium"
+  (mousemove)="onMove($event)"
+  (mouseleave)="onLeave()"
+  [style.transform]="transform"
+>
+
+  <div class="image-wrapper">
+    <img [src]="image" [alt]="name" />
+    <div class="gradient"></div>
+
+    <span class="badge" *ngIf="badge">{{ badge }}</span>
+    <span class="price-float">${{ price }}</span>
+
+    <div class="hover-cta">
+     
+      <app-button label="Quick View"  (click)="openQuickView($event)"></app-button>
+    </div>
+  </div>
+
+  <div class="content">
+    <h3>{{ name }}</h3>
+  </div>
+
+</div>
+<app-quick-view
+  *ngIf="showQuickView"
+  [name]="name"
+  [price]="price"
+  [image]="image"
+  (closeModal)="closeQuickView()"
+></app-quick-view>

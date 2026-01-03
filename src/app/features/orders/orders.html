@@ -1,0 +1,66 @@
+<section class="orders-page">
+
+  <h1 scrollReveal>My Orders</h1>
+
+  <div class="orders-list">
+
+    <div
+      class="order-card"
+      *ngFor="let order of orders; let i = index"
+      scrollReveal
+      [delay]="i * 120"
+    >
+
+      <!-- Header -->
+      <div class="order-header">
+        <div>
+          <h3>{{ order.id }}</h3>
+          <p>{{ order.date }} • {{ order.items }} items</p>
+        </div>
+
+        <span
+          class="status"
+          [class]="order.status"
+        >
+          {{ statusLabel(order.status) }}
+        </span>
+      </div>
+
+      <!-- Timeline -->
+      <div class="timeline">
+        <span class="step done">Order Placed</span>
+        <span
+          class="step"
+          [class.done]="order.status !== 'pending'"
+        >
+          Paid
+        </span>
+        <span
+          class="step"
+          [class.done]="order.status === 'shipped' || order.status === 'delivered'"
+        >
+          Shipped
+        </span>
+        <span
+          class="step"
+          [class.done]="order.status === 'delivered'"
+        >
+          Delivered
+        </span>
+      </div>
+
+      <!-- Footer -->
+      <div class="order-footer">
+        <span class="total">${{ order.total }}</span>
+
+        <div class="actions">
+          <button class="link">View Details</button>
+          <button class="primary">Reorder</button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>

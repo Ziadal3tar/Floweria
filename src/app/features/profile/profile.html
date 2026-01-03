@@ -1,0 +1,84 @@
+<section class="profile-page">
+
+  <h1 scrollReveal>My Account</h1>
+
+  <div class="layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" scrollReveal>
+      <button (click)="setSection('overview')" [class.active]="activeSection==='overview'">Overview</button>
+      <button (click)="setSection('account')" [class.active]="activeSection==='account'">Account Info</button>
+      <button (click)="setSection('addresses')" [class.active]="activeSection==='addresses'">Addresses</button>
+      <button (click)="setSection('payments')" [class.active]="activeSection==='payments'">Payment Methods</button>
+      <button (click)="setSection('security')" [class.active]="activeSection==='security'">Security</button>
+      <button (click)="setSection('preferences')" [class.active]="activeSection==='preferences'">Preferences</button>
+      <button class="logout" (click)="logout()">Logout</button>
+    </aside>
+
+    <!-- Content -->
+    <div class="content">
+
+      <!-- Overview -->
+      <div *ngIf="activeSection==='overview'" class="card" scrollReveal>
+        <h2>Welcome, {{ user.name }}</h2>
+        <p>{{ user.email }}</p>
+
+        <div class="stats">
+          <div>
+            <strong>{{ user.ordersCount }}</strong>
+            <span>Orders</span>
+          </div>
+          <div>
+            <strong>{{ user.lastOrder }}</strong>
+            <span>Last Order</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Account -->
+      <div *ngIf="activeSection==='account'" class="card" scrollReveal>
+        <h2>Personal Information</h2>
+        <p><strong>Name:</strong> {{ user.name }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Phone:</strong> {{ user.phone }}</p>
+        <button class="primary">Edit</button>
+      </div>
+
+      <!-- Addresses -->
+      <div *ngIf="activeSection==='addresses'" class="card" scrollReveal>
+        <h2>Saved Addresses</h2>
+
+        <div class="address" *ngFor="let a of addresses">
+          <strong>{{ a.label }}</strong>
+          <p>{{ a.address }}</p>
+          <span *ngIf="a.default" class="badge">Default</span>
+        </div>
+
+        <button class="outline">Add New Address</button>
+      </div>
+
+      <!-- Payments -->
+      <div *ngIf="activeSection==='payments'" class="card" scrollReveal>
+        <h2>Payment Methods</h2>
+        <p>No saved cards yet.</p>
+        <button class="outline">Add Card</button>
+      </div>
+
+      <!-- Security -->
+      <div *ngIf="activeSection==='security'" class="card" scrollReveal>
+        <h2>Security</h2>
+        <button class="outline">Change Password</button>
+      </div>
+
+      <!-- Preferences -->
+      <div *ngIf="activeSection==='preferences'" class="card" scrollReveal>
+        <h2>Preferences</h2>
+        <label><input type="checkbox" checked /> Email notifications</label>
+        <label><input type="checkbox" /> Dark mode</label>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>

@@ -1,1 +1,49 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --primary: #4CAF50;
+  --secondary: #F6C1CC;
+  --bg: #ffffff;
+  --text: #1e1e1e;
+  --muted: #7a7a7a;
+  --danger: #e53935;
+  --radius: 8px;
+   --primary: #4caf50;
+  --radius-sm: 12px;
+  --radius-md: 18px;
+  --radius-lg: 24px;
+
+  --shadow-sm: 0 6px 18px rgba(0,0,0,0.06);
+  --shadow-md: 0 18px 40px rgba(0,0,0,0.08);
+  --shadow-lg: 0 30px 80px rgba(0,0,0,0.15);
+
+  --text: #222;
+  --muted: #777;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+}
+/* Scroll Reveal Base */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+  will-change: opacity, transform;
+}
+
+.reveal-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Variants (اختياري) */
+.reveal-left {
+  transform: translateX(-24px);
+}
+.reveal-right {
+  transform: translateX(24px);
+}

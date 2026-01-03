@@ -1,0 +1,147 @@
+<section class="admin-users">
+
+  <!-- HEADER -->
+  <header class="page-header">
+    <div>
+      <h1>Users</h1>
+      <p>Manage users, roles & access</p>
+    </div>
+  </header>
+
+  <!-- FILTERS -->
+  <div class="filters">
+    <input placeholder="Search by name or email..." />
+
+    <select>
+      <option>All Roles</option>
+      <option>Admin</option>
+      <option>Manager</option>
+      <option>Customer</option>
+    </select>
+
+    <select>
+      <option>Status</option>
+      <option>Active</option>
+      <option>Blocked</option>
+    </select>
+  </div>
+
+  <!-- TABLE -->
+  <div class="table-wrapper">
+    <table class="table advanced">
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>Role</th>
+          <th>Status</th>
+          <th>Created</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let u of users; trackBy: trackById">
+          <td class="user-cell">
+            <div class="avatar">{{ u.name[0] }}</div>
+            <div>
+              <strong>{{ u.name }}</strong>
+              <small>{{ u.email }}</small>
+            </div>
+          </td>
+
+          <td>
+            <span class="role" [class.admin]="u.role === 'Admin'">
+              {{ u.role }}
+            </span>
+          </td>
+
+          <td>
+            <span class="badge" [class.active]="u.status === 'Active'"
+                               [class.blocked]="u.status === 'Blocked'">
+              {{ u.status }}
+            </span>
+          </td>
+
+          <td>{{ u.createdAt }}</td>
+
+          <td class="actions">
+            <button class="icon-btn" (click)="openUser(u)">👁</button>
+            <button class="icon-btn danger" (click)="toggleStatus(u)">
+              {{ u.status === 'Active' ? '⛔' : '✅' }}
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- OVERLAY -->
+  <div class="overlay" *ngIf="isDrawerOpen" (click)="closeDrawer()"></div>
+
+  <!-- DRAWER -->
+<aside class="drawer" [class.open]="isDrawerOpen">
+
+  <!-- HEADER -->
+  <header class="drawer-header">
+    <div>
+      <h2>User Details</h2>
+      <p>Manage user information & access</p>
+    </div>
+
+    <button class="icon-btn close" (click)="closeDrawer()">✕</button>
+  </header>
+
+  <!-- BODY -->
+  <div class="drawer-body" *ngIf="selectedUser">
+
+    <!-- BASIC INFO -->
+    <section class="drawer-section">
+      <h3>Basic Information</h3>
+
+      <div class="field">
+        <label>Name</label>
+        <input [(ngModel)]="selectedUser.name" />
+      </div>
+
+      <div class="field">
+        <label>Email</label>
+        <input [(ngModel)]="selectedUser.email" />
+      </div>
+    </section>
+
+    <!-- ACCESS -->
+    <section class="drawer-section">
+      <h3>Access & Role</h3>
+
+      <div class="row">
+        <div class="field">
+          <label>Role</label>
+          <select [(ngModel)]="selectedUser.role">
+            <option>Admin</option>
+            <option>Manager</option>
+            <option>Customer</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Status</label>
+          <select [(ngModel)]="selectedUser.status">
+            <option>Active</option>
+            <option>Blocked</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="drawer-footer">
+    <button class="outline" (click)="closeDrawer()">Cancel</button>
+    <button class="primary" (click)="saveUser()">Save Changes</button>
+  </footer>
+
+</aside>
+
+
+</section>

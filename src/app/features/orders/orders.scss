@@ -1,0 +1,157 @@
+.orders-page {
+  max-width: 1100px;
+  margin: auto;
+  padding: 40px 16px;
+
+  h1 {
+    margin-bottom: 32px;
+    font-size: 32px;
+  }
+}
+
+/* List */
+.orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* Card */
+.order-card {
+  background: #fff;
+  padding: 26px;
+  border-radius: 22px;
+  box-shadow: 0 18px 45px rgba(0,0,0,0.08);
+}
+
+/* Header */
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 22px;
+
+  h3 {
+    margin: 0;
+    font-size: 18px;
+  }
+
+  p {
+    font-size: 13px;
+    color: var(--muted);
+  }
+}
+
+/* Status */
+.status {
+  padding: 6px 14px;
+  border-radius: 14px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.status.pending {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.status.paid {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+
+.status.shipped {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.status.delivered {
+  background: #ede7f6;
+  color: #5e35b1;
+}
+
+/* Timeline */
+.timeline {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #eee;
+    z-index: 0;
+  }
+}
+
+.step {
+  background: #eee;
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  z-index: 1;
+}
+
+.step.done {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* Footer */
+.order-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .total {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--primary);
+  }
+
+  .actions {
+    display: flex;
+    gap: 12px;
+
+    .link {
+      background: none;
+      border: none;
+      color: var(--text);
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .primary {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 14px;
+      cursor: pointer;
+      font-weight: 500;
+    }
+  }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .timeline {
+    flex-direction: column;
+    gap: 8px;
+
+    &::before {
+      display: none;
+    }
+  }
+
+  .order-footer {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+}

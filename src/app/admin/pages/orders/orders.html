@@ -1,0 +1,184 @@
+<section class="admin-orders">
+
+  <!-- HEADER -->
+  <header class="page-header">
+    <h1>Orders</h1>
+    <p>Track, manage and fulfill customer orders</p>
+  </header>
+
+  <!-- TABLE -->
+  <div class="table-wrapper">
+    <table class="table advanced">
+      <thead>
+        <tr>
+          <th>Order</th>
+          <th>Customer</th>
+          <th>Date</th>
+          <th>Status</th>
+          <th>Total</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let o of orders">
+          <td>{{ o.id }}</td>
+          <td>
+            <strong>{{ o.customer }}</strong>
+            <small>{{ o.email }}</small>
+          </td>
+          <td>{{ o.date }}</td>
+          <td>
+            <span class="badge" [class]="o.status.toLowerCase()">
+              {{ o.status }}
+            </span>
+          </td>
+          <td>${{ o.total }}</td>
+          <td>
+            <button class="icon-btn" (click)="openOrder(o)">👁</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- OVERLAY -->
+  <div class="overlay" *ngIf="isDrawerOpen" (click)="closeDrawer()"></div>
+
+  <!-- DRAWER -->
+  <aside class="drawer" [class.open]="isDrawerOpen">
+
+    <header class="drawer-header">
+      <h2>Order {{ selectedOrder?.id }}</h2>
+      <button class="icon-btn" (click)="closeDrawer()">✕</button>
+    </header>
+
+    <section class="order-info">
+      <p><strong>Customer:</strong> {{ selectedOrder?.customer }}</p>
+      <p><strong>Email:</strong> {{ selectedOrder?.email }}</p>
+      <p><strong>Total:</strong> ${{ selectedOrder?.total }}</p>
+      <p><strong>Status:</strong> {{ selectedOrder?.status }}</p>
+    </section>
+<!-- ORDER ITEMS -->
+<section class="order-items">
+  <h3>Order Items</h3>
+
+  <div class="items-list">
+
+    <div class="item"
+         *ngFor="let item of selectedOrder?.items">
+
+      <img [src]="item.image" />
+
+      <div class="details">
+        <strong>{{ item.name }}</strong>
+        <small>SKU: {{ item.sku }}</small>
+      </div>
+
+      <div class="qty">
+        × {{ item.quantity }}
+      </div>
+
+      <div class="price">
+        ${{ item.price }}
+      </div>
+
+      <div class="subtotal">
+        ${{ item.price * item.quantity }}
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- TOTAL -->
+  <div class="order-total">
+    <span>Total</span>
+    <strong>${{ selectedOrder?.total }}</strong>
+  </div>
+</section>
+
+    <!-- TIMELINE -->
+    <section class="timeline">
+      <h3>Order Timeline</h3>
+
+      <div class="timeline-item"
+        *ngFor="let e of selectedOrder?.timeline">
+        <div class="dot"></div>
+        <div class="content">
+          <strong>{{ e.status }}</strong>
+          <span>{{ e.date }}</span>
+        </div>
+      </div>
+    </section>
+<section class="order-actions">
+  <h3>Update Status</h3>
+
+  <div class="status-actions">
+
+
+<button
+  class="btn-primary"
+  *ngIf="selectedOrder?.status === 'Shipped'"
+  (click)="updateStatus(selectedOrder!, 'Delivered')"
+  [disabled]="isCancelling"
+>
+  ✓ Mark as Delivered
+</button>
+
+
+
+  <button
+  class="btn-link-danger"
+  *ngIf="
+    selectedOrder?.status !== 'Delivered' &&
+    selectedOrder?.status !== 'Cancelled'
+  "
+  (click)="openCancelConfirm()"
+>
+  Cancel Order
+</button>
+
+
+  </div>
+</section>
+
+
+  </aside>
+
+</section>
+<!-- CONFIRM MODAL -->
+<div class="modal-overlay" *ngIf="isConfirmOpen">
+
+  <div class="confirm-modal">
+
+    <h3>Cancel Order</h3>
+    <p>
+      Are you sure you want to cancel this order?  
+      This action cannot be undone.
+    </p>
+
+    <div class="modal-actions">
+
+      <button
+        class="btn-outline"
+        (click)="closeCancelConfirm()"
+        [disabled]="isCancelling"
+      >
+        Keep Order
+      </button>
+
+      <button
+        class="btn-danger"
+        (click)="confirmCancel(selectedOrder)"
+        [disabled]="isCancelling"
+      >
+        <span *ngIf="!isCancelling">Yes, Cancel</span>
+        <span *ngIf="isCancelling" class="loader"></span>
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

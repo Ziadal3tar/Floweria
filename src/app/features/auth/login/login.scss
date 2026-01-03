@@ -1,0 +1,68 @@
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f7f7f7, #ffffff);
+  padding: 20px;
+}
+
+.auth-card {
+  background: #fff;
+  padding: 48px 40px;
+  border-radius: 26px;
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.15);
+
+  h1 {
+    margin-bottom: 6px;
+    font-size: 30px;
+  }
+
+  .subtitle {
+    color: var(--muted);
+    margin-bottom: 32px;
+  }
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 28px;
+
+  input {
+    padding: 14px 18px;
+    border-radius: 16px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+  }
+}
+
+.primary-btn {
+  width: 100%;
+  padding: 16px;
+  border-radius: 18px;
+  border: none;
+  background: linear-gradient(
+    135deg,
+    #4caf50,
+    #66bb6a
+  );
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.switch {
+  margin-top: 24px;
+  font-size: 14px;
+
+  a {
+    color: var(--primary);
+    font-weight: 500;
+    text-decoration: none;
+  }
+}

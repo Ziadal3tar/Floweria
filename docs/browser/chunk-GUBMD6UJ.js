@@ -1,0 +1,1 @@
+import{Aa as o,Oa as s,Pa as a,db as i}from"./chunk-UOLGZMFI.js";import"./chunk-2NFLSA4Y.js";var r=class e{static \u0275fac=function(t){return new(t||e)};static \u0275cmp=o({type:e,selectors:[["app-product-details"]],decls:2,vars:0,template:function(t,n){t&1&&(s(0,"p"),i(1,"product-details works!"),a())},encapsulation:2})};export{r as ProductDetails};

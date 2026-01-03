@@ -1,0 +1,181 @@
+<section class="hero" >
+  <div class="hero-container">
+
+    <!-- Text Content -->
+    <div class="hero-text">
+      <span class="badge">🌸 Premium Flower Store</span>
+
+      <h1>
+        Fresh Flowers <br />
+        Delivered in <span>24 Hours</span>
+      </h1>
+
+      <p>
+        Handcrafted bouquets made with love.  
+        Perfect for every moment that matters.
+      </p>
+
+      <div class="hero-actions">
+        <a routerLink="/products" class="btn-primary">
+          Shop Collection
+        </a>
+        <span class="rating">⭐ 5,000+ Happy Customers</span>
+      </div>
+    </div>
+
+    <!-- Image -->
+    <div class="hero-image">
+      <img
+        src="https://images.unsplash.com/photo-1490750967868-88aa4486c946"
+        alt="Flower bouquet"
+      />
+    </div>
+
+  </div>
+</section>
+<!-- Trust Bar -->
+<section class="trust-bar">
+  <div class="trust-container">
+
+    <div class="trust-item">
+      <span class="icon">🚚</span>
+      <div>
+        <h4>Free Delivery</h4>
+        <p>On all orders</p>
+      </div>
+    </div>
+
+    <div class="trust-item">
+      <span class="icon">🌸</span>
+      <div>
+        <h4>Fresh Guarantee</h4>
+        <p>Always handpicked</p>
+      </div>
+    </div>
+
+    <div class="trust-item">
+      <span class="icon">🔒</span>
+      <div>
+        <h4>Secure Payment</h4>
+        <p>100% protected</p>
+      </div>
+    </div>
+
+    <div class="trust-item">
+      <span class="icon">💬</span>
+      <div>
+        <h4>24/7 Support</h4>
+        <p>We’re here for you</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- Categories -->
+<section class="categories-premium">
+  <div class="section-header">
+    <h2>Shop by Category</h2>
+    <p>Find the perfect flowers for every occasion</p>
+  </div>
+
+  <div class="categories-grid">
+
+    <div class="category-card large">
+      <img
+        src="https://images.unsplash.com/photo-1509042239860-f550ce710b93"
+        alt="Roses"
+      />
+      <div class="overlay">
+        <h3>Roses</h3>
+      </div>
+    </div>
+
+    <div class="category-card">
+      <img
+        src="https://images.unsplash.com/photo-1519378058457-4c29a0a2efac"
+        alt="Bouquets"
+      />
+      <div class="overlay">
+        <h3>Bouquets</h3>
+      </div>
+    </div>
+
+    <div class="category-card">
+      <img
+        src="https://images.unsplash.com/photo-1526045612212-70caf35c14df"
+        alt="Gifts"
+      />
+      <div class="overlay">
+        <h3>Gifts</h3>
+      </div>
+    </div>
+
+    <div class="category-card wide">
+      <img
+        src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6"
+        alt="Occasions"
+      />
+      <div class="overlay">
+        <h3>Occasions</h3>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- Best Sellers -->
+<section class="best-sellers">
+  <div class="section-header">
+    <h2>⭐ Best Sellers This Week</h2>
+    <p>Flowers our customers love the most</p>
+  </div>
+
+  <div class="best-grid">
+    <div class="highlight">
+      <app-product-card
+        id="1"
+        name="Luxury Red Roses"
+        [price]="65"
+        image="https://images.unsplash.com/photo-1509042239860-f550ce710b93"
+      />
+      <span class="badge">Best Seller</span>
+    </div>
+
+    <app-product-card
+      id="2"
+      name="Elegant White Lilies"
+      [price]="40"
+      image="https://images.unsplash.com/photo-1501004318641-b39e6451bec6"
+    />
+
+    <app-product-card
+      id="3"
+      name="Pink Tulips Bouquet"
+      [price]="45"
+      image="https://images.unsplash.com/photo-1504196606672-aef5c9cefc92"
+    />
+
+    <app-product-card
+      id="4"
+      name="Sunflower Joy"
+      [price]="35"
+      image="https://images.unsplash.com/photo-1508747703725-719777637510"
+    />
+  </div>
+</section>
+<!-- Emotional Section -->
+<section class="emotional">
+  <div class="emotional-content">
+    <h2>Flowers that say what words can’t</h2>
+    <p>
+      Every bouquet is crafted with care to help you express love,
+      gratitude, and joy in the most beautiful way.
+    </p>
+  </div>
+</section>
+<!-- Final CTA -->
+<section class="final-cta">
+  <h2>Ready to make someone smile today?</h2>
+  <a routerLink="/products" class="cta-btn">
+    Browse All Flowers
+  </a>
+</section>

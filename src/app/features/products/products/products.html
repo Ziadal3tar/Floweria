@@ -1,0 +1,107 @@
+<section class="products-page">
+
+  <!-- Page Header -->
+  <div class="page-header" scrollReveal>
+    <div>
+      <h1>All Flowers</h1>
+      <p>{{ products.length }} premium products</p>
+    </div>
+
+    <button class="filter-btn" (click)="showFilters = true">
+      Filters
+    </button>
+  </div>
+
+  <div class="layout">
+
+    <!-- Filters Sidebar -->
+    <aside class="filters premium desktop-only" scrollReveal>
+
+      <div class="filters-header">
+        <h3>Filters</h3>
+        <button class="clear">Clear all</button>
+      </div>
+
+      <!-- Category -->
+      <div class="filter-section">
+        <h4>Category</h4>
+        <div class="chips">
+          <button class="chip active">Roses</button>
+          <button class="chip">Bouquets</button>
+          <button class="chip">Gifts</button>
+          <button class="chip">Occasions</button>
+        </div>
+      </div>
+
+      <!-- Price -->
+      <div class="filter-section">
+        <h4>Price Range</h4>
+        <div class="price-range">
+          <span>$20</span>
+          <input type="range" min="20" max="150" />
+          <span>$150</span>
+        </div>
+      </div>
+
+      <!-- Rating -->
+      <div class="filter-section">
+        <h4>Rating</h4>
+        <div class="rating">
+          <span class="star active">★</span>
+          <span class="star active">★</span>
+          <span class="star active">★</span>
+          <span class="star">★</span>
+          <span class="star">★</span>
+        </div>
+      </div>
+
+      <!-- Availability -->
+      <div class="filter-section">
+        <label class="toggle">
+          <input type="checkbox" />
+          <span class="slider"></span>
+          In stock only
+        </label>
+      </div>
+
+      <button class="apply-btn">Apply Filters</button>
+    </aside>
+
+    <!-- Products Grid -->
+    <div class="products-grid">
+      <app-product-card
+  *ngFor="let p of products; let i = index"
+  [name]="p.name"
+  [price]="p.price"
+  [image]="p.image"
+  [badge]="p.badge"
+></app-product-card>
+
+    </div>
+
+  </div>
+
+  <!-- Mobile Filters Drawer -->
+  <div class="filters-drawer" *ngIf="showFilters">
+    <div class="drawer-content">
+      <h3>Filters</h3>
+
+      <div class="chips">
+        <button class="chip active">Roses</button>
+        <button class="chip">Bouquets</button>
+        <button class="chip">Gifts</button>
+      </div>
+
+      <div class="price-range">
+        <span>$20</span>
+        <input type="range" min="20" max="150" />
+        <span>$150</span>
+      </div>
+
+      <button class="apply-btn" (click)="showFilters = false">
+        Apply
+      </button>
+    </div>
+  </div>
+
+</section>

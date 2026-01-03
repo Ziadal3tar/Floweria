@@ -1,0 +1,22 @@
+<!-- لو فيه routerLink -->
+<a
+  *ngIf="routerLink"
+  [routerLink]="routerLink"
+  class="btn"
+  [ngClass]="variant"
+>
+  <span *ngIf="!loading">{{ label }}</span>
+  <span *ngIf="loading" class="loader"></span>
+</a>
+
+<!-- لو زر عادي -->
+<button
+  *ngIf="!routerLink"
+  [attr.type]="type"
+  [disabled]="disabled || loading"
+  class="btn"
+  [ngClass]="variant"
+>
+  <span *ngIf="!loading">{{ label }}</span>
+  <span *ngIf="loading" class="loader"></span>
+</button>

@@ -1,0 +1,41 @@
+<header class="main-header">
+
+  <div class="container">
+
+    <!-- Left -->
+    <div class="left">
+      <button class="menu-btn" (click)="toggleMenu()">☰</button>
+
+      <a routerLink="/" class="logo">
+        🌸 <span>Floweria</span>
+      </a>
+    </div>
+
+    <!-- Center -->
+    <nav class="nav" [class.open]="menuOpen">
+      <a routerLink="/" routerLinkActive="active">Home</a>
+      <a routerLink="/products" routerLinkActive="active">Shop</a>
+      <a routerLink="/orders" routerLinkActive="active">Orders</a>
+      <a routerLink="/profile" routerLinkActive="active">Account</a>
+    </nav>
+
+    <!-- Search -->
+    <div class="search">
+      <input placeholder="Search flowers..." />
+    </div>
+
+    <!-- Right -->
+    <div class="right">
+      <button class="icon">♡</button>
+
+      <a routerLink="/cart" class="icon cart">
+        🛒
+        <span class="badge">{{ cartCount }}</span>
+      </a>
+
+      <a routerLink="/profile" class="icon">👤</a>
+    </div>
+
+  </div>
+
+</header>

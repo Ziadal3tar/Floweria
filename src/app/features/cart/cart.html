@@ -1,0 +1,64 @@
+<section class="cart-page">
+
+  <h1 scrollReveal>Shopping Cart</h1>
+
+  <div class="layout">
+
+    <!-- Cart Items -->
+    <div class="items">
+
+      <div
+        class="item"
+        *ngFor="let item of cartItems; let i = index"
+        scrollReveal
+        [delay]="i * 100"
+      >
+        <img [src]="item.image" />
+
+        <div class="info">
+          <h3>{{ item.name }}</h3>
+          <p class="price">${{ item.price }}</p>
+
+          <div class="qty">
+            <button (click)="decrease(item)">−</button>
+            <span>{{ item.qty }}</span>
+            <button (click)="increase(item)">+</button>
+          </div>
+        </div>
+
+        <button class="remove" (click)="remove(item)">✕</button>
+      </div>
+
+    </div>
+
+    <!-- Summary -->
+    <aside class="summary" scrollReveal>
+      <h2>Order Summary</h2>
+
+      <div class="row">
+        <span>Subtotal</span>
+        <span>${{ subtotal }}</span>
+      </div>
+
+      <div class="row">
+        <span>Shipping</span>
+        <span>${{ shipping }}</span>
+      </div>
+
+      <div class="row total">
+        <span>Total</span>
+        <span>${{ total }}</span>
+      </div>
+
+      <!-- <a routerLink="/checkout" class="checkout-btn">
+        Proceed to Checkout
+      </a> -->
+      <app-button
+  label="Proceed to Checkout"
+  routerLink="/checkout"
+></app-button>
+    </aside>
+
+  </div>
+
+</section>

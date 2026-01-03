@@ -1,0 +1,201 @@
+<section class="admin-dashboard">
+
+  <!-- HERO ANALYTICS -->
+  <section class="hero">
+
+    <div class="hero-text">
+      <h1>Dashboard Overview</h1>
+      <p>Real-time insights into your store performance</p>
+    </div>
+
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <span>Revenue</span>
+        <strong>$48,320</strong>
+        <small class="up">▲ 12.4%</small>
+      </div>
+
+      <div class="kpi-card">
+        <span>Orders</span>
+        <strong>1,248</strong>
+        <small class="up">▲ 6.1%</small>
+      </div>
+
+      <div class="kpi-card">
+        <span>Conversion</span>
+        <strong>3.9%</strong>
+        <small class="down">▼ 0.3%</small>
+      </div>
+
+      <div class="kpi-card">
+        <span>Active Users</span>
+        <strong>842</strong>
+        <small class="up">▲ 2.8%</small>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- REVENUE ANALYTICS -->
+    <section class="revenue-analytics">
+
+  <!-- HEADER -->
+  <div class="analytics-header">
+    <div>
+      <h2>Revenue Analytics</h2>
+      <p>Track your store performance over time</p>
+    </div>
+
+    <div class="range-switch">
+      <button
+        [class.active]="range === '7d'"
+        (click)="changeRange('7d')">
+        7D
+      </button>
+      <button
+        [class.active]="range === '30d'"
+        (click)="changeRange('30d')">
+        30D
+      </button>
+      <button
+        [class.active]="range === '90d'"
+        (click)="changeRange('90d')">
+        90D
+      </button>
+    </div>
+  </div>
+
+  <!-- SUMMARY -->
+  <div class="revenue-summary">
+
+    <div class="summary-card">
+      <span>Total Revenue</span>
+      <strong>${{ revenueSummary.total }}</strong>
+      <small class="up">▲ 12.4%</small>
+    </div>
+
+    <div class="summary-card">
+      <span>Avg Order Value</span>
+      <strong>${{ revenueSummary.avgOrder }}</strong>
+      <small class="up">▲ 3.1%</small>
+    </div>
+
+    <div class="summary-card">
+      <span>Best Day</span>
+      <strong>{{ revenueSummary.bestDay }}</strong>
+      <small>Highest sales</small>
+    </div>
+
+  </div>
+
+  <!-- CHART -->
+ <div class="chart-wrapper">
+  <apx-chart
+    #chart
+    [series]="chartOptions.series"
+    [chart]="chartOptions.chart"
+    [xaxis]="chartOptions.xaxis"
+    [stroke]="chartOptions.stroke"
+    [tooltip]="chartOptions.tooltip"
+    [dataLabels]="chartOptions.dataLabels">
+  </apx-chart>
+</div>
+
+
+  <!-- FOOTER INSIGHT -->
+  <div class="analytics-footer">
+    <span>
+      Revenue is trending <strong>upwards</strong> compared to previous period.
+    </span>
+  </div>
+
+</section>
+
+  <!-- ORDERS WORKFLOW -->
+  <!-- نفس السيكشن اللي اتفقنا عليه -->
+  <section class="orders-flow">
+
+    <div class="section-header">
+      <h2>Orders Workflow</h2>
+      <button class="link">View all orders →</button>
+    </div>
+
+    <div class="flow-grid">
+
+      <div class="flow-card pending highlight">
+        <div class="icon">⏳</div>
+        <div class="info">
+          <strong>124</strong>
+          <span>Pending</span>
+          <small>Needs attention</small>
+        </div>
+      </div>
+
+      <div class="arrow">→</div>
+
+      <div class="flow-card paid">
+        <div class="icon">💳</div>
+        <div class="info">
+          <strong>86</strong>
+          <span>Paid</span>
+          <small>Processing</small>
+        </div>
+      </div>
+
+      <div class="arrow">→</div>
+
+      <div class="flow-card shipped">
+        <div class="icon">🚚</div>
+        <div class="info">
+          <strong>42</strong>
+          <span>Shipped</span>
+          <small>On the way</small>
+        </div>
+      </div>
+
+      <div class="arrow">→</div>
+
+      <div class="flow-card delivered">
+        <div class="icon">⭐</div>
+        <div class="info">
+          <strong>19</strong>
+          <span>Delivered</span>
+          <small>Completed</small>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- INSIGHTS -->
+  <section class="insights">
+
+    <div class="top-products">
+      <h3>Top Products</h3>
+
+      <ul>
+        <li><span>Red Roses</span><strong>$4,320</strong></li>
+        <li><span>White Lilies</span><strong>$3,180</strong></li>
+        <li><span>Gift Box</span><strong>$2,040</strong></li>
+      </ul>
+    </div>
+
+    <div class="activity">
+      <h3>Recent Activity</h3>
+
+      <ul>
+        <li>🛒 Order #10231 placed</li>
+        <li>📦 Order #10212 shipped</li>
+        <li>👤 New user registered</li>
+      </ul>
+    </div>
+
+  </section>
+
+  <!-- ALERT -->
+  <section class="alert warning">
+    ⚠️ Stock running low for 3 products
+  </section>
+
+</section>

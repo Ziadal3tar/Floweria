@@ -1,0 +1,22 @@
+<section class="auth-page">
+
+    <div class="auth-card">
+
+        <h1>Welcome Back</h1>
+        <p class="subtitle">Login to your account</p>
+
+        <div class="fields">
+            <input placeholder="Email Address" />
+            <input type="password" placeholder="Password" />
+        </div>
+
+  
+        <app-button class="w-100" (click)="login()" label="Login" [loading]="isLoading"></app-button>
+        <p class="switch">
+            Don’t have an account?
+            <a routerLink="/auth/register">Create one</a>
+        </p>
+
+    </div>
+
+</section>

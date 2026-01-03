@@ -1,0 +1,252 @@
+<section class="admin-products">
+
+  <!-- PAGE HEADER -->
+  <header class="page-header">
+    <div>
+      <h1>Products</h1>
+      <p>Manage your catalog, variants & media</p>
+    </div>
+
+    <div class="header-actions">
+      <span class="count">34 Products</span>
+      <button class="primary" (click)="openDrawer()">+ Add Product</button>
+    </div>
+  </header>
+
+  <!-- FILTERS -->
+  <div class="filters">
+    <input placeholder="Search by name or SKU..." />
+
+    <select>
+      <option>Status</option>
+      <option>Active</option>
+      <option>Draft</option>
+    </select>
+
+    <select>
+      <option>Stock</option>
+      <option>In Stock</option>
+      <option>Low Stock</option>
+    </select>
+  </div>
+
+  <!-- PRODUCTS TABLE -->
+  <div class="table-wrapper">
+
+    <table class="table advanced">
+      <thead>
+        <tr>
+          <th class="check">
+            <input type="checkbox" [checked]="allSelected" (change)="toggleAll($event)" />
+          </th>
+          <th>Product</th>
+          <th>Status</th>
+          <th>Stock</th>
+          <th>Variants</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of products; trackBy: trackProduct">
+          <td class="check">
+            <input type="checkbox" [checked]="selected.has(p.id)" (change)="toggleOne(p.id)" />
+          </td>
+
+          <td><strong>{{ p.name }}</strong></td>
+
+          <td>
+            <span class="badge" [class.active]="p.status === 'Active'">
+              {{ p.status }}
+            </span>
+          </td>
+
+          <td><span class="stock high">{{ p.stock }}</span></td>
+
+          <td>
+            <span class="variants">
+              {{ p.variants.length }} variants
+            </span>
+          </td>
+
+          <td>${{ p.price }}</td>
+
+          <td class="actions">
+            <button class="icon-btn edit" (click)="editProduct(p)">✏️</button>
+            <button class="icon-btn danger" (click)="deleteProduct(p.id)">🗑️</button>
+          </td>
+        </tr>
+
+
+      </tbody>
+    </table>
+    <div class="bulk-bar" *ngIf="selected.size > 0">
+
+      <span>{{ selected.size }} selected</span>
+
+      <div class="actions">
+        <button class="outline">Activate</button>
+        <button class="outline">Deactivate</button>
+        <button class="danger">Delete</button>
+        <button class="subtle" (click)="clearSelection()">Clear</button>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- OVERLAY -->
+  <div class="overlay" *ngIf="isDrawerOpen" (click)="closeDrawer()"></div>
+
+  <!-- PRODUCT DRAWER -->
+  <aside class="drawer" [class.open]="isDrawerOpen" *ngIf="currentProduct">
+
+    <header class="drawer-header">
+      <h2>{{ isEditMode ? 'Edit Product' : 'Add Product' }}</h2>
+
+      <button class="icon-btn" (click)="closeDrawer()">✕</button>
+    </header>
+
+    <!-- BASIC INFO -->
+    <section>
+      <h3>Basic Information</h3>
+      <input placeholder="Product name" [(ngModel)]="currentProduct.name" />
+      <textarea placeholder="Description"[(ngModel)]="currentProduct.description"></textarea>
+    </section>
+
+    <!-- PRICING -->
+    <section>
+      <h3>Pricing & Inventory</h3>
+      <div class="row">
+        <input type="number" placeholder="Price" [(ngModel)]="currentProduct.price" />
+        <input type="number" placeholder="Stock" [(ngModel)]="currentProduct.stock" />
+      </div>
+    </section>
+
+    <!-- VARIANTS -->
+    <section class="variants-editor">
+
+      <!-- HEADER -->
+      <div class="variants-header">
+        <h3>Variants</h3>
+
+        <div class="actions">
+          <button class="outline">Generate Variants</button>
+          <button class="primary" (click)="addVariant()">+ Add Variant</button>
+
+        </div>
+      </div>
+
+      <!-- ATTRIBUTES -->
+      <div class="attributes">
+        <div class="attribute">
+          <strong>Color</strong>
+          <div class="values">
+            <span class="tag">Red ✕</span>
+            <span class="tag">White ✕</span>
+            <button class="add-tag">+ Add</button>
+          </div>
+        </div>
+
+        <div class="attribute">
+          <strong>Size</strong>
+          <div class="values">
+            <span class="tag">Small ✕</span>
+            <span class="tag">Large ✕</span>
+            <button class="add-tag">+ Add</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- VARIANTS LIST -->
+      <div class="variants-list">
+
+        <div class="variant-card" *ngFor="let variant of currentProduct.variants; trackBy: trackVariant">
+
+          <!-- SUMMARY -->
+          <div class="variant-summary" (click)="toggleVariant(variant)">
+
+            <div class="left">
+              <strong>
+                {{ variant.attributes.color }} / {{ variant.attributes.size }}
+              </strong>
+              <span>SKU: {{ variant.sku }}</span>
+            </div>
+
+            <div class="right">
+              <span class="price">${{ variant.price }}</span>
+              <span class="stock in">
+                In Stock ({{ variant.stock }})
+              </span>
+              <button class="icon-btn">
+                {{ variant.expanded ? '⌃' : '⌄' }}
+              </button>
+            </div>
+
+          </div>
+
+          <!-- DETAILS -->
+          <div class="variant-details" *ngIf="variant.expanded">
+
+            <div class="grid">
+              <div>
+                <label>Price</label>
+                <input type="number" [(ngModel)]="variant.price" />
+              </div>
+
+              <div>
+                <label>Stock</label>
+                <input type="number" [(ngModel)]="variant.stock" />
+              </div>
+
+              <div>
+                <label>SKU</label>
+                <input [(ngModel)]="variant.sku" />
+              </div>
+
+              <div>
+                <label>Image</label>
+                <div class="image-picker">+</div>
+              </div>
+            </div>
+
+            <div class="variant-actions">
+              <button class="outline" (click)="duplicateVariant(variant)">
+                Duplicate
+              </button>
+              <button class="danger" (click)="deleteVariant(variant.id)">
+                Delete
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+    </section>
+
+
+    <!-- MEDIA -->
+    <section>
+      <h3>Media</h3>
+      <div class="media-grid">
+        <div class="upload">+</div>
+        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93" />
+        <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946" />
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="drawer-footer">
+      <button class="outline" (click)="closeDrawer()">Cancel</button>
+      <!-- <button class="primary">Save Product</button> -->
+      <button class="primary" (click)="saveProduct()">
+        {{ isEditMode ? 'Update Product' : 'Add Product' }}
+      </button>
+    </footer>
+
+  </aside>
+
+</section>

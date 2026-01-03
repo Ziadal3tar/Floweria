@@ -1,0 +1,1 @@
+import{Aa as o,Oa as a,Pa as i,db as s}from"./chunk-UOLGZMFI.js";import"./chunk-2NFLSA4Y.js";var n=class t{static \u0275fac=function(e){return new(e||t)};static \u0275cmp=o({type:t,selectors:[["app-categories"]],decls:2,vars:0,template:function(e,c){e&1&&(a(0,"p"),s(1,"categories works!"),i())},encapsulation:2})};export{n as Categories};

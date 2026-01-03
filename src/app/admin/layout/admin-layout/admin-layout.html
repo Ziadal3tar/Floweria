@@ -1,0 +1,36 @@
+<div class="admin">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="brand">Floweria Admin</div>
+
+    <nav>
+      <a routerLink="/admin" routerLinkActive="active">Dashboard</a>
+      <a routerLink="/admin/products" routerLinkActive="active">Products</a>
+      <a routerLink="/admin/orders" routerLinkActive="active">Orders</a>
+      <a routerLink="/admin/users" routerLinkActive="active">Users</a>
+      <a routerLink="/admin/settings" routerLinkActive="active">Settings</a>
+    </nav>
+  </aside>
+
+  <!-- Main -->
+  <div class="main">
+
+    <!-- Top Bar -->
+    <header class="topbar">
+      <input placeholder="Search admin..." />
+
+      <div class="top-actions">
+        <button>🔔</button>
+        <button>👤 Admin</button>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <main class="content">
+      <router-outlet></router-outlet>
+    </main>
+
+  </div>
+
+</div>

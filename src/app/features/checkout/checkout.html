@@ -1,0 +1,91 @@
+<section class="checkout-page">
+
+  <h1 scrollReveal>Checkout</h1>
+
+  <div class="layout">
+
+    <!-- Left -->
+    <div class="form-section" scrollReveal>
+
+      <!-- Shipping -->
+      <div class="card">
+        <h2>Shipping Details</h2>
+
+        <div class="fields">
+          <input placeholder="Full Name" />
+          <input placeholder="Email Address" />
+          <input placeholder="Address" />
+          <div class="row">
+            <input placeholder="City" />
+            <input placeholder="Zip Code" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Payment -->
+      <div class="card">
+        <h2>Payment Method</h2>
+
+        <label class="radio">
+          <input
+            type="radio"
+            name="payment"
+            checked
+            (change)="paymentMethod = 'card'"
+          />
+          <span>Credit / Debit Card</span>
+        </label>
+
+        <label class="radio">
+          <input
+            type="radio"
+            name="payment"
+            (change)="paymentMethod = 'cod'"
+          />
+          <span>Cash on Delivery</span>
+        </label>
+
+        <div class="card-details" *ngIf="paymentMethod === 'card'">
+          <input placeholder="Card Number" />
+          <div class="row">
+            <input placeholder="MM / YY" />
+            <input placeholder="CVV" />
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Right -->
+    <aside class="summary" scrollReveal>
+
+      <h2>Order Summary</h2>
+
+      <div class="row">
+        <span>Subtotal</span>
+        <span>${{ subtotal }}</span>
+      </div>
+
+      <div class="row">
+        <span>Shipping</span>
+        <span>${{ shipping }}</span>
+      </div>
+
+      <div class="row total">
+        <span>Total</span>
+        <span>${{ total }}</span>
+      </div>
+
+      <button class="pay-btn" (click)="placeOrder()">
+        Pay ${{ total }}
+      </button>
+
+      <p class="secure">
+        🔒 Secure payment • SSL encrypted
+      </p>
+
+    </aside>
+
+  </div>
+
+</section>
